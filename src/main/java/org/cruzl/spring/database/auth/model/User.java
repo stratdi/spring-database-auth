@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.google.common.base.Joiner;
 import com.sun.istack.NotNull;
@@ -40,6 +41,7 @@ public class User {
 	private @NotNull String lastName;
 	private @NotNull String email;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 	private String displayName;
 

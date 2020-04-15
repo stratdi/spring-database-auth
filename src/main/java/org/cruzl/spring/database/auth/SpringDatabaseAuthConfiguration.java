@@ -37,7 +37,7 @@ public class SpringDatabaseAuthConfiguration extends WebSecurityConfigurerAdapte
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-
+		
 		http.authorizeRequests().antMatchers("/resources/**", "/login", "/logout").permitAll();
 		http.authorizeRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");

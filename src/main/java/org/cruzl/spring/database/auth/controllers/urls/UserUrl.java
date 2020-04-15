@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 public class UserUrl {
 
 	public static final String USER_LOGGED = "/user";
+	public static final String USER_LOGGED_EDIT = "/user/edit";
 	public static final String USER = "/user/{username}";
+	public static final String USER_EDIT = "/user/{username}/edit";
 	public static final String LOGIN = "/login";
 	public static final String LOGOUT = "/logout";
 
@@ -16,6 +18,10 @@ public class UserUrl {
 
 	public String getUserLoggedUrl() {
 		return USER_LOGGED;
+	}
+
+	public String getUserLoggedEdit() {
+		return USER_LOGGED_EDIT;
 	}
 
 }
