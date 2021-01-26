@@ -2,8 +2,9 @@ package org.cruzl.spring.database.auth.model;
 
 import java.time.LocalDate;
 import java.util.Base64;
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import org.cruzl.spring.database.auth.model.converter.AttributeEncryptor;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +38,7 @@ public class User {
 	private @Id Long id;
 
 	private @NotNull String userName;
+	@Convert(converter = AttributeEncryptor.class)
 	private @NotNull String password;
 	private @NotNull String firstName;
 	private @NotNull String lastName;
@@ -44,13 +47,14 @@ public class User {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 	private String displayName;
+	private String locale;
 
 	@Type(type = "org.hibernate.type.ImageType")
 	private @Lob byte[] image;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles;
+	private List<Role> roles;
 
 	public String getDisplayName() {
 		String displayName;
